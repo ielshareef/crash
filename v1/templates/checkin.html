@@ -1,0 +1,88 @@
+{% extends "base/base_profile.html" %}
+{% load extras %}
+{% block title %} {{ checkin.attraction.name }} - by {{ user.username|capfirst}} {% endblock %}
+{% block fb_meta %}
+<meta property="og:title" content="{{ checkin.attraction.name }} - by {{ user.first_name}} {{ user.last_name }}"/>
+<meta property="og:image" content="http://res.cloudinary.com/hwthvxm3h/image/upload/w_640,h_640/{{ checkin.photo_url }}"/>
+{% endblock %}
+
+{% block headercore %}
+<div class="span8 user-header">
+	<a href="/{{ user.username }}"><img alt="{{ user.username }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_100,h_100,c_fill/{{ user.avatar }}" height="100" style="float:left;" /></a>
+	<div style="float:left; margin-left:20px;position:relative; width:420px;">
+		<img alt="" style="position:absolute;z-index: 99;top: 61px;left: 86px;" src="/static/img/linker.png" />
+		<div class="user"><span class="name">{{ user_name|capfirst }} </span></div>
+		<div href="" class="score">CHECK IN{{ user.checkins|pluralize|upper }}<br /><span>{{ user.checkins }}</span></div>
+		<div href="" class="score" style="left:96px;">PHOTOS<br /><span>0</span></div>
+		<div href="" class="score" style="left:193px;">HERO SHOTS<br /><span>0</span></div>
+		<div href="/{{ username }}/discovered" class="score" style="left:290px;">DISCOVERED<br /><span>0</span></div>
+	</div>
+	<hr />
+</div>
+{% endblock %}
+{% block content %}
+<style>
+	.squares {
+	}
+	.squares img {
+		display: inline-block;
+		height:45px;
+		margin:0 8px 10px 0;
+		width:45px;
+	}
+	.squares img.last {
+		margin:0 0 10px 0;
+	}
+	
+</style>
+<div class="container" style="width:960px; padding:20px; background:#fff; margin-top:25px; min-height:1000px;">
+	<div class="checkin" style="float:left;">
+		<div class="likes" style="float:left;">
+			<div id="loading_{{ checkin.id }}" class="loading hide"><img alt="" src="/static/img/loading.gif" /></div>			
+			<a href="#"><span class="{% if not checkin.liked %}plus{% else %}minus{% endif %}">{{ checkin.id }}</span></a>
+			<span class="bubble"><strong id="checkin_likes_{{ checkin.id }}">{{ checkin.likes_count}}</strong><span>LIKES</span></span>
+		</div>
+		<div style="border-bottom:5px solid #ebebeb; float:left;margin-left: 20px;padding-bottom: 5px;width: 822px;">
+			<div style="font-size:30px;line-height: 30px;float: left;"><a href="/attraction/{{ checkin.attraction.id }}/{{ checkin.attraction.name.split|join:"_" }}">{{ checkin.attraction.name }}</a></div>
+
+			<div style="float:right;margin-top: 13px;"><a href="{{ req.META.HTTP_REFERER }}">< Back to {% if user.username|substr:req.META.HTTP_REFERER %} {{ user.username|capfirst }}'s{% else %}{{ checkin.attraction.name }}'s{% endif %} Detail Page</a></div>
+		</div>
+	</div>
+	
+	<div style="margin-top:25px;float:left;width:960px;">
+		<div style="float:left;">
+			<img alt="{{ checkin.attraction.name.split|join:"_"|escape }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_640,h_640/{{ checkin.photo_url }}" width="640" height="640" />
+			<div style="margin-top:10px;margin-bottom:35px;">{{ checkin.comment }}</div>
+		</div>
+		<div style="float:left;margin-left:20px;width:300px;">
+			<a href="https://maps.google.com/maps?q={{ attraction.latitude }},+{{ attraction.longitude }}+({{ attraction.name }})" target="_blank"><img alt="" src="http://maps.googleapis.com/maps/api/staticmap?size=300x370&zoom=14&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:%7C{{ attraction.latitude }},{{ attraction.longitude }}&sensor=false" height="370" width="300" /></a>
+			<div style="margin-top:20px; width:300px;text-align:right;">
+				<a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank"><img alt="" src="/static/img/stock_300_250.png" width="300" height="250" /></a>
+				<div style="margin-top:10px;"><a href="/about_us">Advertise With US</a></div>
+			</div>
+		</div>
+	</div>
+	<div style="float:left; width:640px;">
+		<div class="container" style="width:595px;margin:0;">
+			<div class="fb-comments" data-href="{{ thisurl }}" data-width="640" data-num-posts="5"></div>
+		</div>
+	</div>
+</div>
+
+<br style="clear:both;" />
+{% endblock %}
+
+{% block js %}
+<script>
+	(function() {
+		{% autoescape off %}
+		var title = "{{ checkin.attraction.name|addslashes }}";
+		{% endautoescape %}
+		$('#pinterest').click(function(e) {
+			e.preventDefault();
+			var url = "http://pinterest.com/pin/create/button/?url="+window.location.href+"&media=http://res.cloudinary.com/hwthvxm3h/image/upload/w_640,h_640/{{ checkin.photo_url|urlencode }}&description=" + title;
+			window.open(url, 'Pinterest', 'width=700, height=500, toolbar=0');
+		});
+	})();
+</script>
+{% endblock %}

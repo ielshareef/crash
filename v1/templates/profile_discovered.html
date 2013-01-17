@@ -1,0 +1,96 @@
+{% extends "base/base_profile.html" %}
+
+{% block content %}
+<style>
+	select {
+		margin-right:10px;
+		margin-bottom:0;
+		width: 189px;
+	}
+</style>
+<div class="container arrow_box-white" style="background:#fff; width:960px; padding:20px; margin:25px auto; min-height:80px;">
+	<div style="border-bottom:5px solid #ebebeb; float:left; width:960px;padding-bottom:6px;">
+		<div style="text-transform:uppercase;font-size:30px;color:#666;float:left;line-height:30px;">{{ lname }} discovered</div>
+		<div style="float:right;padding-top:13px;"><a href="/{{ username }}">&lt; Back to {{ lname }}'s Profile</a></div>
+	</div>
+	<div style="width:960px; float:left; padding-top:10px;">
+		<select>
+			<option>All Cities</option>
+		</select>
+		<select>
+			<option>Most Recent</option>
+		</select>
+	</div>
+</div>
+<div class="container" style="width:1000px; margin:25px auto;">
+	<!-- The photo unit -->
+	<div class="polariod m25">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+	<div class="polariod m25">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+	<div class="polariod">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+	<div class="polariod m25">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+	<div class="polariod m25">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+	<div class="polariod">
+		<img src="/static/img/stock_275.jpg" width="264" height="264" />
+		<div class="caption">
+			<span><a href="">Kill Bill: El Paso Wedding Chapel</a></span><br />
+			<span>6 minutes ago</span>
+		</div>
+		<div class="likes">
+			<a href="/"><span class="plus"></span></a>
+			<span class="bubble">43</span>
+		</div>
+	</div>
+</div>
+<a href="#"><div class="container load-more"><span>load more</span> &#x25BC;</div></a>
+<br style="clear:both;" />
+{% endblock %}

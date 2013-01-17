@@ -1,0 +1,92 @@
+{% extends "base/base.html" %}
+
+{% block title %} {{ user_name|capfirst }}'s Adventures on Crash{% endblock %}
+
+{% block fb_meta %}
+<meta property="og:title" content="{{ user_name|capfirst }}'s Adventures on Crash {{location}}"/>
+<meta property="og:image" content="http://www.cra.sh/static/img/crash.png"/>
+{% endblock %}
+
+{% block css %}
+	<style>
+		body {
+			background: #e5e5e5;
+			font-family: Helvetica;
+			padding-bottom:0;
+		}
+		hr {
+			width:953px; 
+			border: 3px solid #464646; 
+			position:absolute; 
+			top:107px; 
+			z-index:-3;
+			left:0;
+		}
+		.main {
+			background:#000 url(/static/img/bkgnd-gradient.jpg) repeat-x top left;
+			height:265px;
+			width:1000px;
+		}
+		.user-header {
+			position:absolute;
+			top:8px;
+			z-index:100; 
+			margin-left:20px;
+		}
+		.user-header .box {
+			float:left; 
+			margin-left:20px;
+			position:relative; 
+			width:420px;
+		}
+		.user-header .box img {
+			position:absolute;
+			z-index: 99;
+			top: 61px;
+			left: 86px;
+		}
+		.logo-container {
+			right: 20px;
+		}
+	</style>
+{% endblock %}
+
+{% block header %}
+    <div class="container main">
+	  	<div class="navbar">
+	      <div class="navbar-inner arrow_box" id="fbstatus"></div>
+	    </div>
+      <!-- Example row of columns -->
+      <div class="row rel">
+		{% block headercore %}
+        <div class="span8 user-header" vocab="http://schema.org/" typeof="Person">
+			<a href="/{{ user.username }}" property="url"><img alt="{{ user.username }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_100,h_100,c_fill/{{ user.avatar }}" height="100" class="fl" property="image" /></a>
+			<div class="box">
+				<img src="/static/img/linker.png" />
+				<div class="user"><span class="name" property="name">{{ user_name|capfirst }}</span></div>
+				<div href="" class="score">CHECK IN{{ user.checkins|pluralize|upper }}<br /><span>{{ user.checkins }}</span></div>
+				<div href="" class="score" style="left:96px;">PHOTOS<br /><span>0</span></div>
+				<div href="" class="score" style="left:193px;">HERO SHOTS<br /><span>0</span></div>
+				<div href="/{{ user.username }}/discovered" class="score" style="left:290px;">DISCOVERED<br /><span>0</span></div>
+			</div>
+			<hr />
+        </div>
+		{% endblock %}
+        <div class="span4">
+			<div class="row logo-container">
+	          	<a href="/" class="logo"></a>
+				<div class="tagline">{% block tagline %}BE YOUR OWN TOUR GUIDE{% endblock %}</div>
+				
+	        </div>
+		</div>
+		{% block socialbar %}
+		<div id="pinterest" class="row">
+			<a href="http://pinterest.com/"></a>
+		</div>
+		<div id="facebook-bar" class="row">
+			<fb:like href="{{ req.build_absolute_uri }}" send="true" width="800" colorscheme="dark" show_faces="false"></fb:like>
+		</div>
+		{% endblock %}
+      </div>
+	</div>
+{% endblock %}

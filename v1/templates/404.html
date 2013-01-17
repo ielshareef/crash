@@ -1,0 +1,155 @@
+{% extends "base/base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block css %}
+<style type="text/css" media="screen">
+	body {
+		background-image: url(/static/img/bkgnd_1920_404.jpg);
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row rel" style="left:-10px;">
+        <div class="span8" style="position: relative;width:640px;z-index:100;">
+          	<a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168"><img class="hand" src="/static/img/hand3.png" /></a>
+			<hr style='width:610px; border: 3px solid #464646; position:absolute; top:116px; z-index:-3;left:392px;'>
+        </div>
+        <div class="span4">
+			<div class="row logo-container" style="right:59px;">
+	          	<a href="/" class="logo"></a>
+				<div class="tagline">BE YOUR OWN TOUR GUIDE</div>
+				
+	        </div>
+			<!--<<div class="row" style="background:#fff; border:1px solid #ccc; position:absolute;top:159px;right:3px;height:32px;width:300px;padding:0 5px; overflow:hidden;">
+				input type="text" value="Search Crash" id="searchbox" onfocus="if (this.value == 'Search Crash') {this.value = '';} $(this).css('color', '#666')" onblur="if (this.value == '') {this.value = 'Search Crash';$(this).css('color', '#999')}" style="border-color:#fff;padding-left:5px;color:#999; -webkit-box-shadow: inset 0 0; margin-top:2px;" /><a href="javascript:;"><img src="/static/img/magglass.png" style="float:right;" onclick="window.location='/search/'+document.getElementById('searchbox').value;"></a>
+			</div>-->
+			<div class="row reg" style="padding:20px; width:398px;top:255px;right:45px;">
+				<a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank"><img src="/static/img/404_text.png" alt="404 page not found. Hey, columbus. Dounload your app and never be lost again!" /></a>
+	        </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="container" style="width:1040px;">
+	<div style="margin-left:-10px;">
+		<div class="footer" style="color:#9a9a9a; margin-top:10px;margin-left:20px;float:left;font-size:30px;">
+			U.S. Travel Destinations
+	   	</div>
+		<div class="footer" style="margin-top:5px;margin-bottom:10px;margin-right:30px;float:right;">
+			<a href="http://www.facebook.com/crashworks" class="fb-link" target="_blank"></a><a href="http://twitter.com/crashapp" class="tw-link" target="_blank"></a><a href="http://pinterest.com/crashapp" class="pn-link" target="_blank"></a>
+	   	</div>
+		<footer style="clear:both;width:960px; margin:0 20px 20px 20px; float:left; padding:20px;">
+	    	<ul id="region_column1">
+				<li>Crash Alaska</li>
+				<li>Crash Albuquerque, NM</li>
+				<li>Crash Atlanta, GA</li>
+				<li>Crash Austin, TX</li>
+				<li>Crash Baltimore, MD</li>
+				<li>Crash Billings, MT</li>
+				<li>Crash Birmingham, AL</li>
+				<li>Crash Boise, ID</li>
+				<li>Crash Boston, MA</li>
+				<li>Crash Buffalo, NY</li>
+				<li>Crash Charleston, WV</li>
+				<li>Crash Charlotte, NC</li>
+				<li>Crash Cheyene, WY</li>
+				<li>Crash Chicago, IL</li>
+			</ul>
+	   		<ul id="region_column2">
+				<li>Crash Cincinnati, OH</li>
+				<li>Crash Cleveland, OH</li>
+				<li>Crash Columbia, SC</li>
+				<li>Crash Columbia, OH</li>
+				<li>Crash Dallas, TX</li>
+				<li>Crash Denver, CO</li>
+				<li>Crash Des Moines, IA</li>
+				<li>Crash Detroit, MI</li>
+				<li>Crash Dover, DE</li>
+				<li>Crash Fargo, ND</li>
+				<li>Crash Green Bay, WI</li>
+				<li>Crash Hartford, CT</li>
+				<li>Crash Hawaii</li>
+			</ul>
+	   		<ul id="region_column3">
+				<li>Crash Houston, TX</li>
+				<li>Crash Indianapolis, IN</li>
+				<li>Crash Jackson, MS</li>
+				<li>Crash Jacksonville, FL</li>
+				<li>Crash Kansas City, MO</li>
+				<li>Crash Las Vegas, NV</li>
+				<li>Crash Little Rock, AR</li>
+				<li class="active"><a href="/region/los_angeles/11">Crash Los Angeles, CA</a></li>
+				<li>Crash Louisville, KY</li>
+				<li>Crash Memphis, TN</li>
+				<li>Crash Miami, FL</li>
+				<li>Crash Milwaukee, WI</li>
+				<li>Crash Minneapolis, MN</li>
+			</ul>
+	   		<ul id="region_column4">
+				<li>Crash Nashville, TN</li>
+				<li>Crash New England</li>
+				<li>Crash New Jersey</li>
+				<li>Crash New Orleans, LA</li>
+				<li>Crash New York City, NY</li>
+				<li>Crash Oklahoma City, OK</li>
+				<li>Crash Omaha, NE</li>
+				<li>Crash Philadelphia, PA</li>
+				<li>Crash Phoenix, AZ</li>
+				<li>Crash Pierre, SD</li>
+				<li>Crash Pittsburgh, PA</li>
+				<li>Crash Portland, OR</li>
+				<li>Crash Providence, RI</li>
+			</ul>
+	   		<ul id="region_column5" style="width:158px;">
+				<li>Crash Raleigh, NC</li>
+				<li>Crash Reno, NV</li>
+				<li>Crash Richmond, VA</li>
+				<li>Crash Saint Louis, MO</li>
+				<li>Crash Salt Lake City, UT</li>
+				<li>Crash San Antonio, TX</li>
+				<li class="active"><a href="/region/san_diego/511">Crash San Diego, CA</a></li>
+				<li class="active"><a href="/region/san_francisco/441">Crash San Francisco, CA</a></li>
+				<li>Crash Seattle, WA</li>
+				<li>Crash Tampa Bay, FL</li>
+				<li>Crash Tucson, AZ</li>
+				<li>Crash Washington D.C.</li>
+				<li>Crash Wichita, KS</li>
+			</ul>
+	  	</footer>
+	  	<footer style="clear:both;width:960px; margin:0 20px 100px 20px; float:left; padding:20px;">
+	    	<div style="float:left">&copy; 2012 Crashworks, Inc - An <a href="http://www.idealab.com/our_companies/show/all/crashworks" class="light-link" target="_blank">Idealab</a> Company</div>
+			<div class="links"><a href="/about_us">About Us</a> &bull; <a href="/privacy_policy">Privacy Policy</a> &bull; <a href="/terms_of_use">Terms of Use</a> &bull; <a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank">Download the App</a> &bull; <a href="mailto: crashfounders@gmail.com">Contact Us</a></div>
+	  	</footer>
+	</div>
+</div> <!-- /container -->
+{% endblock %}
+
+{% block extras %}
+	<div class="modal hide" id="myModal" style="font-size:14px; width:450px;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><img src="/static/img/close.gif" /></button>
+			<h3>CONGRATS!</h3>
+		</div>
+	  	<div class="modal-body">
+	    	<p>You've successfully reserved your Crash username!</p>
+			<p>Tell your friends so they can get theirs:</p>
+			<div style="background:#e5e5e5;padding:20px;">
+				<div class="row" style="padding-bottom:10px;">
+					<div class="span2" style="width:120px;">
+						<img src="/static/img/logo-white2.gif" />
+					</div>
+					<div class="span2" style="margin-left:0">
+						<textarea class="input-xlarge" id="textarea" rows="5">I just reserved my username on Crash, the coolest attraction discovery app on the planet.&#13;&#13;You should too!</textarea>
+					</div>
+				</div>
+				<div class="row" style="text-align:right;">
+					<a id="shareOnFb" href="javascript:;"><img src="/static/img/fb-submit.jpg" /></a>
+				</div>
+			</div>
+	  	</div>
+	</div>
+{% endblock %}	

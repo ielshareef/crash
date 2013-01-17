@@ -1,0 +1,195 @@
+{% extends "base/base_profile.html" %}
+{% load extras %}
+{% load humanize %}
+{% block socialbar %}
+<div id="facebook-bar" class="row flush">
+	<fb:like href="{{ req.build_absolute_uri }}" send="true" width="800" colorscheme="dark" show_faces="false"></fb:like>
+</div>
+{% endblock %}
+{% block title %}About Crashworks, Inc. {% endblock %}
+{% block headercore %}
+<div class="span8 user-header">
+	<a href="http://www.idealab.com/our_companies/show/all/crashworks" target="_blank"><img alt="Idealab" src="/static/img/idealab.jpg" height="100" class="fl" /></a>
+	<div style="float:left; margin-left:20px;position:relative; width:420px;">
+		<div class="user"><span class="name">Crashworks, Inc</span></div>
+		<div class="score">CITIES<br /><span>3</span></div>
+		<div class="score" style="left:97px;">ATTRACTIONS<br /><span>{{ total_attr|intcomma }}</span></div>
+		<div class="score" style="left:193px;">CHECK INS<br /><span>{{ total_chk|intcomma }}</span></div>
+		<div class="score" style="left:290px;">PHOTOS<br /><span>{{ total_ph|intcomma }}</span></div>
+	</div>
+	<hr />
+</div>
+{% endblock %}
+
+{% block content %}
+<style>
+	.members {
+		background:#fff;float:left; width:265px; height:100px; padding:20px; margin-top:25px;
+	}
+	.members img {
+		float:left;margin-right:7px;
+	}
+	.members .groups img {
+		float:left; margin: 0 6px 5px 0;
+	}
+	.members .groups img.last {
+		float:left; margin: 0 0 5px 0;
+	}
+	form {
+		margin:0;
+	}
+	form input,
+	form textarea {
+		width: 290px;
+	}
+	form select {
+		width:300px;
+		margin-bottom:10px;
+	}
+	form div {
+		padding-top:5px;
+		clear:both;
+	}
+	.error {
+		color: #f00;
+	}
+	input.error {
+		border: 1px solid #f00;
+	}
+</style>
+<div class="container" style="width:1000px; margin-top:25px; position:relative;">
+	<img src="/static/img/about_hero.jpg" alt="About Crashworks, Inc" />
+</div>
+<div class="container" style="width:1000px; margin-top:25px; position:relative;" vocab="http://schema.org/" resource="#attraction" typeof="TouristAttraction">
+	<div style="float:left; width:660px; margin-right:25px; border-right:340px solid #fff;">
+		<div style="float:left; width:635px; margin-right:25px;">
+			<div class="container arrow_box-white" style="color:#666; background:#fff; float:left; width:595px; padding:20px;">
+				<div style="border-bottom:5px solid #ebebeb; float:left; width:595px;padding-bottom:3px;">
+					<h1 style="font-size:30px;color:#666;" property="name">ABOUT US</h1>
+				</div>
+				<div style="float:left;padding:10px 0; line-height:20px;" property="description">
+					<strong>Explore</strong><br/>
+					<p>Find 1,000s of off-beat, curated tourist attractions including ten <a href="/attraction/19041/Sturtevant_Falls">hidden waterfalls</a>, nine <a href="/attraction/16051/Randy's_Donuts">giant donuts</a> (and one <a href="/attraction/16681/Bellflower_Bagels">bagel</a>), and 100+ cool film locations like <a href="/attraction/17841/E.T.:_Elliott's_House">Elliot's house from <em>E.T.</em></a> and the <a href="/attraction/18191/Kill_Bill:_El_Paso_Wedding_Chapel"><em>Kill Bill</em> chapel</a>. Discover amazing street art by the likes of <a href="/attraction/16981/PARKing_by_Banksy">Banksy</a> and <a href="/attraction/16021/Peace_Elephant">Shepard Fairey</a>, museums you never knew existed (<a href="/attraction/19211/McDonald's_Museum">McDonald's Museum</a>, anyone?), plus loads of other attractions featuring the wild, the wonderful, and the just plain <a href="/attraction/15881/Chicken_Boy">weird</a>.</p>
+
+					<strong>Contribute</strong><br />
+					<p>Add cool and unique spots that only locals may know about. Be an attraction's "discoverer" and get the glory. Or, you can simply post photos and comments to existing attractions.</p>
+
+					<strong>Dominate</strong><br />
+					<p>Check in at attractions to fill out your game board (a.k.a. the "Crash Board"), rack up points for posting stuff, rule the leaderboard, and win awesome prizes!</p>
+
+					<p><a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank">Download the FREE app today!</a></p>
+
+					Happy exploring,<br />
+					The Crash Team
+					
+				</div>
+			</div>
+		</div>
+
+		{% for i in team %}
+		<!-- The friend photo unit -->
+		<div class="members {% if not forloop.counter|divisibleby:"2"%}m25{% endif %}">
+			<a href="/{{ i.0.user.username }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_100,h_100,c_fill/{{ i.0.user.avatar }}" width="100" height="100" /></a>
+			<div class="groups">
+				<a href="/photo/{{ i.0.id}}/{{ i.0.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.0.photo_url }}" width="48" height="48" /></a>
+				<a href="/photo/{{ i.1.id}}/{{ i.1.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.1.photo_url }}" width="48" height="48"/></a>
+				<a href="/photo/{{ i.2.id}}/{{ i.2.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.2.photo_url }}" width="48" height="48" class="last" /></a>
+				<a href="/photo/{{ i.3.id}}/{{ i.3.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.3.photo_url }}" width="48" height="48" /></a>
+				<a href="/photo/{{ i.4.id}}/{{ i.4.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.4.photo_url }}" width="48" height="48" /></a>
+				<a href="/photo/{{ i.5.id}}/{{ i.5.attraction.name.split|join:"_" }}"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_48,h_48/{{ i.5.photo_url }}" width="48" height="48" class="last" /></a>
+			</div>
+		</div>
+		<!-- END The photo unit -->
+		{% endfor %}
+		
+	</div>
+	<div style="float:left; width:340px; margin:20px auto; position:absolute; right:0;">
+		<div style="background:#fff; padding:20px; padding-top:0; border-bottom:25px solid #E5E5E5; width:300px; margin-bottom:25px;">
+			<div style="border-bottom:5px solid #ebebeb; float:left; width:300px;padding-bottom:3px;margin-bottom:6px;">
+				<h1 style="font-size:30px;color:#666;" property="name">CONTACT US</h1>
+			</div>
+			<form id="contactform" name="contactform">
+				<div>Full Name:<br />
+				<input type="text" id="contact_name" class="required" /></div>
+				<div>Email Address:<br />
+				<input type="email" id="contact_email" class="required email" /></div>
+				<div>Subject:<br />
+				<select id="contact_subject">
+					<option value="General">General</option>
+					<option value="Jobs">Jobs</option>
+					<option value="New Business">New Business</option>
+					<option value="Press">Press</option>
+					<option value="Advertise With Us">Advertise With Us</option>
+				</select></div>
+				<div>Message:<br />
+				<textarea type="text" id="contact_message" class="required" rows="8"/></textarea></div>
+				
+				<div style="background:url(/static/img/sprite.png) -56px -90px; width:190px; height:32px; display:inline-block;margin-top:10px;"></div>
+				<a href="#"><div id="submit" style="background:url(/static/img/sprite.png) -250px -90px; width:106px; height:32px; display:inline-block;margin-top:10px;"></div></a>
+			</form>
+		</div>
+		<div style="background:#fff; padding:20px; padding-top:0; width:300px;">
+			<div class="fb-like-box" data-href="https://www.facebook.com/crashworks" data-width="300" data-show-faces="true" data-stream="false" data-border-color="white" data-header="true"></div>
+		</div>
+	</div>	
+</div>
+<br style="clear:both;" />
+{% endblock %}
+
+{% block js %}
+<script src="/static/bootstrap/js/jquery.validate.js"></script>
+<script>
+	(function() {
+		
+		var friends_followers_state = $('#friends_followers').hasClass('arrow_box-gray');
+		var friends_following_state = $('#friends_following').hasClass('arrow_box-gray');
+		
+		$('#friends_followers').hover(function() {
+			if (!friends_followers_state) {
+				$(this).toggleClass('arrow_box-gray');
+				$('#friends_following').toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_followers_state = true;
+			friends_following_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_following').removeClass('arrow_box-gray');
+		});
+		
+		$('#friends_following').hover(function() {
+			if (!friends_following_state) {
+				$(this).toggleClass('arrow_box-gray');
+				$('#friends_followers').toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_following_state = true;
+			friends_followers_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_followers').removeClass('arrow_box-gray');
+		});
+		$.fn.clearForm = function() {
+		  return this.each(function() {
+		    var type = this.type, tag = this.tagName.toLowerCase();
+		    if (tag == 'form')
+		      return $(':input',this).clearForm();
+		    if (type == 'text' || type == 'password' || type == 'email' || tag == 'textarea')
+		      this.value = '';
+		    else if (type == 'checkbox' || type == 'radio')
+		      this.checked = false;
+		    else if (tag == 'select')
+		      this.selectedIndex = -1;
+		  });
+		};
+		$('#contactform').validate();
+		$('#submit').click(function(e) {
+			e.preventDefault(e);
+			if ($("#contactform").valid()) {
+				$.post("/contact_us", {'name': $('#contact_name').val(), 'email': $('#contact_email').val(), 'subject': $('#contact_subject').val(), 'message': $('#contact_message').val()}, function(data) {
+					$('#contactform').clearForm()
+					alert('Thank you. We received your message.');
+				});
+			}
+		});
+	})();
+</script>
+{% endblock %}

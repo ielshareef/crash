@@ -1,0 +1,113 @@
+{% extends "base/base_profile.html" %}
+
+{% block content %}
+<div class="container arrow_box-white" style="background:#fff; width:960px; margin:25px auto; padding:20px; min-height:80px;">
+	<div style="border-bottom:5px solid #ebebeb; float:left; width:960px;padding-bottom:10px;">
+		<div style="text-transform:uppercase;font-size:30px;color:#666;float:left">{{ lname }} friends</div>
+		<div style="float:right"><a href="/{{ username }}">&lt; Back to {{ lname }}'s Profile</a></div>
+	</div>
+	<div style="width:960px; float:left; padding-top:20px;">
+		<select class="span2">
+			<option>Following</option>
+		</select>
+		<select class="span2">
+			<option>Popular</option>
+		</select>
+	</div>
+</div>
+<div class="container" style="width:1000px; margin:25px auto;">
+	<!-- The friend photo unit -->
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+		</div>
+	</div>
+	<!-- END The photo unit -->
+	
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+		</div>
+	</div>
+	<div class="" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+		</div>
+	</div>
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 0 5px 0; height: 48px; width:48px;"></div>
+		</div>
+	</div>
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 0 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 5px 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 5px 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 0 5px 0; height: 48px; width:48px;"></div>
+		</div>
+	</div>
+	<div class="" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+		</div>
+	</div>
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 0 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 5px 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 5px 5px 0; height: 48px; width:48px;"></div>
+			<div style="display:inline-block; background:#ccc; float:left; margin: 0 0 5px 0; height: 48px; width:48px;"></div>
+		</div>
+	</div>
+	<div class="m25" style="background:#fff;float:left; width:276px; height:100px; padding:20px; margin-bottom:25px;">
+		<img src="/static/img/stock_100.png" width="100" height="100" style="float:left;margin-right:20px;" />
+		<div style="">
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 5px 5px 0;" />
+			<img src="/static/img/stock_48.png" width="48" height="48" style="float:left; margin: 0 0 5px 0;" />
+		</div>
+	</div>
+</div>
+<a href="#"><div class="container load-more"><span>load more</span> &#x25BC;</div></a>
+<br style="clear:both;" />
+{% endblock %}

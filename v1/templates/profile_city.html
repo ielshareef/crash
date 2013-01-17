@@ -1,0 +1,164 @@
+{% extends "base/base_profile.html" %}
+{% block title %}Welcome to Crash {{ city }} {% endblock %}
+{% block tagline %}{{ city }}{% endblock %}
+{% load extras %}
+{% load humanize %}
+{% block fb_meta %}
+<meta property="og:title" content="{{ city }}"/>
+<meta property="og:image" content="http://res.cloudinary.com/hwthvxm3h/image/upload/w_100,h_100/{{ details.thumbnail_image }}"/>
+{% endblock %}
+{% block socialbar %}
+<div id="facebook-bar" class="row flush">
+	<fb:like href="{{ req.build_absolute_uri }}" send="true" width="800" colorscheme="dark" show_faces="false"></fb:like>
+</div>
+{% endblock %}
+{% block headercore %}
+<div class="span8 user-header">
+	<img alt="" src="/static/img/region-{{ details.id }}.jpg" height="100" style="float:left;" />
+	<div style="float:left; margin-left:20px;position:relative; width:420px;">
+		<div class="user"><span class="name">Crash {{ city }}</span> </div>
+		<div class="score">ATTRACTIONS<br /><span>{{ details.attractions|intcomma }}</span></div>
+		<div href="" class="score" style="left:97px;">CHECK INS<br /><span>{{ details.total_checkins|intcomma }}</span></div>
+		<div href="" class="score" style="left:194px;">PHOTOS<br /><span>{{ details.total_photos|intcomma }}</span></div>
+	</div>
+	<hr />
+</div>
+{% endblock %}
+{% block content %}
+<style>
+	.polariod {
+		width: 265px;
+		margin-top:25px;
+		margin-bottom:0;
+	}
+</style>
+<div class="container" style="position:relative; width:1000px;margin-top:25px;">
+	<div style="float:left; width:660px; margin-right:25px;border-right:340px solid #fff;">
+		<div style="float:left; width:635px; margin-right:25px;">
+			<div class="container arrow_box-white" style="color:#666; background:#fff; float:left; width:595px; padding:20px;">
+				<div style="border-bottom:5px solid #ebebeb; float:left; width:595px;padding-bottom:10px;">
+					<div style="text-transform:uppercase;font-size:30px;color:#666;float:left">
+						{{ city }} <span style="font-size:10px; color:#999; text-transform:uppercase;">SETTLED: {{ settled }}</span>
+					</div>
+				</div>
+				{% autoescape off %}
+				<div style="float:left;padding:10px 0; line-height:20px;">{{ desc|linebreaks }}</div>
+				{% endautoescape %}
+			</div>
+		</div>
+		
+		<div id="checkins-list">
+		{% for i in checkins %}
+		<!-- The photo unit -->
+		<div class="polariod {% if not forloop.counter|divisibleby:"2"%}m25{% endif %}">
+			<a href="/photo/{{ i.hero_checkin.id }}/{{ i.hero_checkin.attraction.name.split|join:"_" }}"><img alt="" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_264,h_264/{{ i.hero_checkin.photo_url }}" width="264" height="264" /></a>
+			<div class="caption">
+				<span>By: <a href="/{{ i.hero_checkin.user.username }}">{{ i.hero_checkin.user.username|capfirst }}</a></span><br />
+				<span class="timestamp">{{ i.hero_checkin.created|timesince_threshold|split:"," }} ago</span>
+			</div>
+			<div class="likes">
+				<div id="loading_{{ i.hero_checkin.id }}" class="loading hide"><img alt="" src="/static/img/loading.gif" /></div>
+				<a href="#"><span class="{% if not i.hero_checkin.liked %}plus{% else %}minus{% endif %}">{{ i.hero_checkin.id }}</span></a>
+				<span class="bubble" id="checkin_likes_{{ i.hero_checkin.id }}">{{ i.hero_checkin.likes_count }}</span>
+			</div>
+		</div>
+		{% if forloop.last %}
+		<script>var pagination_starts_from = {{ i.hero_checkin.attraction.id }};</script>
+		{% endif %}
+		{% endfor %}
+		<!-- END The photo unit -->
+		</div>
+	</div>
+	<div style="float:left; width:340px;position:absolute; right:0;">
+		<div style="background:#fff; padding:20px; width:300px; text-align:right; margin-bottom:20px; border-bottom:25px solid #e5e5e5;">
+			<a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank"><img alt="" src="/static/img/stock_300.png" width="300" height="600" style="margin-bottom:10px;"/></a><br />
+			<a href="/about_us">Advertise With Us</a>
+		</div>
+		<div style="background:#fff; padding:20px; width:300px; padding-top:0; text-align:left;">
+			<div style="text-transform:uppercase;height:25px;color:#666;">{{ city }}</div>
+			<div style="font-size:30px; height:30px;color:#666;">ATTRACTIONS</div>
+			<div id="attraction-list" style="border:1px solid #ccc; padding:10px;">
+				{% for i in attr %}
+				<a class="dark-link" href="/attraction/{{ i.id }}/{{ i.name.split|join:"_" }}">{{ i.name }}</a><br />
+				{% endfor %}
+			</div>
+		</div>
+	</div>	
+	<br style="clear:both;" /> 
+	{% if checkins|length > 19 %}
+	<a href="#"><div class="container load-more" style="width:595px; margin:25px 0 0 0;"><span id="loading_load_more" class="loading hide"><img alt="" src="/static/img/loading-bk.gif" width="20" height="20" /></span><span style="padding-left:10px;">load more</span> &#x25BC;</div></a>
+	{% endif %}
+</div>
+<br style="clear:both;" />
+{% endblock %}
+
+{% block js %}
+<script>
+	(function() {
+		
+		var friends_followers_state = $('#friends_followers').hasClass('arrow_box-gray');
+		var friends_following_state = $('#friends_following').hasClass('arrow_box-gray');
+		
+		$('#friends_followers').hover(function() {
+			if (!friends_followers_state) {
+				$(this).toggleClass('arrow_box-gray');
+				$('#friends_following').toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_followers_state = true;
+			friends_following_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_following').removeClass('arrow_box-gray');
+		});
+		
+		$('#friends_following').hover(function() {
+			if (!friends_following_state) {
+				$(this).toggleClass('arrow_box-gray');
+				$('#friends_followers').toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_following_state = true;
+			friends_followers_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_followers').removeClass('arrow_box-gray');
+		});
+		$('.load-more').click(function(e) {
+			e.preventDefault();
+			var that = this;
+			$('#loading_load_more').removeClass('hide');
+			var rt = $('#checkins-list');
+			$.post("/load_more_in_region", {'region_id': {{ details.id }}, 'before_id': pagination_starts_from}, function(data) {
+				var obj = jQuery.parseJSON(data)
+				// No errors
+				if (!obj.error) {
+					var len = obj.length;
+					var html = '';
+					for (var i=0; i < len; i++) {
+						m = 'm25';
+						n = 'plus'
+						if (i%2) m = '';
+						if (obj[i].liked) n = 'minus';
+						pagination_starts_from = obj[i].id;
+
+						html = '<div class="polariod '+m+'">';
+						html += '<a href="/photo/'+obj[i].hero_checkin.id+'/'+obj[i].hero_checkin.attraction.name.split().join('_')+'"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_264,h_264/'+obj[i].hero_checkin.photo_url+'" width="264" height="264" /></a>';
+						html += '<div class="caption"><span><a href="/attraction/'+obj[i].hero_checkin.attraction.id+'/'+obj[i].hero_checkin.attraction.name.split(' ').join('_')+'">'+obj[i].hero_checkin.attraction.name+'</a></span><br />';
+						html += '<span class="timestamp">'+jQuery.timeago(obj[i].hero_checkin.created)+'</span></div>';
+						html += '<div class="likes"><div id="loading_'+obj[i].hero_checkin.id+'" class="loading hide"><img src="/static/img/loading.gif" /></div>';
+						html += '<a href="#"><span class="'+n+'">'+obj[i].hero_checkin.id+'</span></a><span class="bubble" id="checkin_likes_'+obj[i].hero_checkin.id+'">'+obj[i].hero_checkin.likes_count+'</span></div></div>';
+
+						rt.append(html);
+					}
+					$('#loading_load_more').addClass('hide');
+					if (len < 20) {
+						$(that).addClass('hide');
+					} 
+				} else {
+					$('#loading_load_more').addClass('hide');
+					alert('Uh-oh, looks like we\'re having a technical issue. We\'re on it.');
+				}
+			});
+		});
+	})();
+</script>
+{% endblock %}

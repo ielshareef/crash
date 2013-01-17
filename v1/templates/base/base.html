@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+	<meta name="google-site-verification" content="558F7hieEsZ-BKZ2VMH7Wwr89j5Kk--0A-6z-ShQceY" />
+    <title>{% block title %}Be Your Own Tour Guide{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block meta_desc %}
+    <meta name="description" content="Crash is a location-based attraction discovery app and website where you can find unique and curated tourist attractions.">
+	{% endblock %}
+	<meta name="keywords" content="Travel, Tourist Attractions, Los Angeles, Trips, Photos, iPhone App">
+    <meta name="author" content="Ismail Elshareef">
+
+	<meta property="og:app_id" content="100928086720891"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="{{ req.build_absolute_uri }}"/>
+	{% block fb_meta %}
+	<meta property="og:title" content="Crash Los Angeles: Be Your Own Tour Guide"/>
+	{% endblock %}
+	<meta property="og:image" content="http://www.cra.sh/static/img/crash.png"/>
+    <!-- styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/static/css/crash.css" rel="stylesheet">
+	{% block css %}{% endblock %}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	<div id="fb-root"></div>
+	{% block header %}
+    <div class="navbar">
+      <div class="navbar-inner arrow_box" id="fbstatus"></div>
+    </div>
+	{% endblock %}
+	
+	{% block content %}
+    <div class="container" style="width:1000px; height:300px; text-align:center;background:#fff;margin:25px auto;">
+	</div>
+	{% endblock %}
+	
+	{% block footer %}
+	<div class="container" style="width:1040px;border-top:5px solid #cac974;background:#1d1d1d;">
+		<div class="footer" style="color:#9a9a9a; margin-top:50px;margin-left:20px;float:left;font-size:30px;">
+			U.S. Travel Destinations
+	   	</div>
+		<div class="footer" style="margin-top:40px;margin-bottom:10px;margin-right:20px;float:right;">
+			<a href="http://www.facebook.com/crashworks" class="fb-link" target="_blank"></a><a href="http://twitter.com/crashapp" class="tw-link" target="_blank"></a><a href="http://pinterest.com/crashapp" class="pn-link" target="_blank"></a>
+	   	</div>
+		<footer style="clear:both;width:960px; margin:0 20px 20px 20px; float:left; padding:20px;">
+        	<ul id="region_column1">
+				<li>Crash Alaska</li>
+				<li>Crash Albuquerque, NM</li>
+				<li>Crash Atlanta, GA</li>
+				<li>Crash Austin, TX</li>
+				<li>Crash Baltimore, MD</li>
+				<li>Crash Billings, MT</li>
+				<li>Crash Birmingham, AL</li>
+				<li>Crash Boise, ID</li>
+				<li>Crash Boston, MA</li>
+				<li>Crash Buffalo, NY</li>
+				<li>Crash Charleston, WV</li>
+				<li>Crash Charlotte, NC</li>
+				<li>Crash Cheyene, WY</li>
+				<li>Crash Chicago, IL</li>
+			</ul>
+       		<ul id="region_column2">
+				<li>Crash Cincinnati, OH</li>
+				<li>Crash Cleveland, OH</li>
+				<li>Crash Columbia, SC</li>
+				<li>Crash Columbia, OH</li>
+				<li>Crash Dallas, TX</li>
+				<li>Crash Denver, CO</li>
+				<li>Crash Des Moines, IA</li>
+				<li>Crash Detroit, MI</li>
+				<li>Crash Dover, DE</li>
+				<li>Crash Fargo, ND</li>
+				<li>Crash Green Bay, WI</li>
+				<li>Crash Hartford, CT</li>
+				<li>Crash Hawaii</li>
+			</ul>
+       		<ul id="region_column3">
+				<li>Crash Houston, TX</li>
+				<li>Crash Indianapolis, IN</li>
+				<li>Crash Jackson, MS</li>
+				<li>Crash Jacksonville, FL</li>
+				<li>Crash Kansas City, MO</li>
+				<li>Crash Las Vegas, NV</li>
+				<li>Crash Little Rock, AR</li>
+				<li class="active"><a href="/region/los_angeles/11">Crash Los Angeles, CA</a></li>
+				<li>Crash Louisville, KY</li>
+				<li>Crash Memphis, TN</li>
+				<li>Crash Miami, FL</li>
+				<li>Crash Milwaukee, WI</li>
+				<li>Crash Minneapolis, MN</li>
+			</ul>
+       		<ul id="region_column4">
+				<li>Crash Nashville, TN</li>
+				<li>Crash New England</li>
+				<li>Crash New Jersey</li>
+				<li>Crash New Orleans, LA</li>
+				<li>Crash New York City, NY</li>
+				<li>Crash Oklahoma City, OK</li>
+				<li>Crash Omaha, NE</li>
+				<li>Crash Philadelphia, PA</li>
+				<li>Crash Phoenix, AZ</li>
+				<li>Crash Pierre, SD</li>
+				<li>Crash Pittsburgh, PA</li>
+				<li>Crash Portland, OR</li>
+				<li>Crash Providence, RI</li>
+			</ul>
+       		<ul id="region_column5" style="width:158px;">
+				<li>Crash Raleigh, NC</li>
+				<li>Crash Reno, NV</li>
+				<li>Crash Richmond, VA</li>
+				<li>Crash Saint Louis, MO</li>
+				<li>Crash Salt Lake City, UT</li>
+				<li>Crash San Antonio, TX</li>
+				<li class="active"><a href="/region/san_diego/511">Crash San Diego, CA</a></li>
+				<li class="active"><a href="/region/san_francisco/441">Crash San Francisco, CA</a></li>
+				<li>Crash Seattle, WA</li>
+				<li>Crash Tampa Bay, FL</li>
+				<li>Crash Tucson, AZ</li>
+				<li>Crash Washington D.C.</li>
+				<li>Crash Wichita, KS</li>
+			</ul>
+      	</footer>
+      	<footer style="clear:both;width:960px; margin:0 20px 100px 20px; float:left; padding:20px;">
+        	<div style="float:left">&copy; 2012 Crashworks, Inc - An <a href="http://www.idealab.com/our_companies/show/all/crashworks" class="light-link" target="_blank">Idealab</a> Company</div>
+			<div class="links"><a href="/about_us" {% if req.get_full_path == '/about_us' %}style="color:#fff;"{% endif %}>About Us</a> &bull; <a href="/privacy_policy" {% if req.get_full_path == '/privacy_policy' %}style="color:#fff;"{% endif %}>Privacy Policy</a> &bull; <a href="/terms_of_use" {% if req.get_full_path == '/terms_of_use' %}style="color:#fff;"{% endif %}>Terms of Use</a> &bull; <a href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank">Download the App</a> &bull; <a href="/about_us" {% if req.get_full_path == '/about_us' %}style="color:#fff;"{% endif %}>Contact Us</a></div>
+      	</footer>
+
+    </div> <!-- /container -->
+	{% endblock %}
+
+	{% block extras %}{% endblock %}
+
+	<!-- JavaScript block -->
+	<script src="/static/bootstrap/js/jquery172.js"></script>
+	<script src="/static/bootstrap/js/jquery.cookie.js"></script>
+	<script src="/static/bootstrap/js/jquery.timeago.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.js"></script>
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+		(function() {
+			// save session token
+			if (!$.cookie('api_token')) {
+				var date = new Date();
+				var minutes = 50;
+				date.setTime(date.getTime() + (minutes * 60 * 1000));
+				$.cookie('api_token', "{{ token }}", { expires: date, path: '/' });
+			}
+			FB.init({appId:"100928086720891",status:true,cookie:true,xfbml:true,oauth:true});
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+					if (!$.cookie('user_username') && !$.cookie('validated_user')) {
+						FB.api({method: 'fql.query',query: 'SELECT name, uid, email FROM user WHERE uid=me()'}, function(response) {
+							$.post("/get_username", {'email': response[0]['email']}, function(data) {
+								$.cookie('validated_user', 'yes', { expires: 30*3600*1000, path: '/' });
+								if (data == 'does_not_exist') {
+									window.location = '/';
+								} else {
+									CRASH.flushToken();
+									$.cookie('user_email', response[0]['email'], { expires: 30*3600*1000, path: '/' });
+									$.cookie('user_uid', response[0]['uid'], { expires: 30*3600*1000, path: '/' });
+									$.cookie('user_name', response[0]['name'], { expires: 30*3600*1000, path: '/' });
+									$.cookie('user_username', data, { expires: 30*3600*1000, path: '/' });
+									window.location = window.location.href;
+								}
+							});
+				     	});
+					} else {
+						if (window.location.href.indexOf($.cookie('user_username')) !== -1) {
+							$('#fbstatus').html('Hello '+ $.cookie('user_username') + ' &bull; <a class="signout" href="javascript:CRASH.fbLogout();">Sign Out</a>');
+						} else if ($.cookie('user_username') && $.cookie('user_username') != 'Null') {
+							$('#fbstatus').html('Hello <a class="signout" href="/'+$.cookie('user_username')+'">'+ $.cookie('user_username') + '</a> &bull; <a class="signout" href="javascript:CRASH.fbLogout();">Sign Out</a>');
+						} else {
+							$('#fbstatus').html('Hello Guest &bull; <a class="signout" href="https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168">Sign up in the App Today</a> &bull; <a class="signout" href="javascript:CRASH.fbLogout();">Sign Out</a>');
+						}
+						
+					}
+
+				} else {
+					$('#fbstatus').html('Login With <a class="login" href="javascript:CRASH.fbLogin();">Facebook</a>');
+				}
+			});
+		})();
+	</script>
+	<script src="/static/js/v1.js"></script>
+	{% block js %}{% endblock %}
+  </body>
+</html>

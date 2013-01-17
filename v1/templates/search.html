@@ -1,0 +1,43 @@
+{% extends "base/base_profile.html" %}
+
+{% block title %}Crash, Inc: PSearch Results for "{{ keyword }}"{% endblock %}
+
+{% block headercore %} <span style=" font-size: 130px; font-family: 'Times New Roman'; color: #000; margin-top: 32px; display: inline-block; ">cra<span style="font-size: 25px;vertical-align: middle;">&#9733;</span>sh</span> {% endblock %}
+
+{% block content %}
+<div class="container" style="width:1000px;">
+	<div style="float:left; width:635px; margin-right:25px;">
+		<div class="container arrow_box-white" style="background:#fff; width:595px; padding:20px; margin:25px auto; min-height:80px; margin-bottom:25px;">
+			<div style="border-bottom:5px solid #ebebeb; float:left; width:595px;padding-bottom:10px;font-size:30px; color:#666;">
+				43 RESULTS FOR "{{ keyword }}"
+			</div>
+			<div style="width:595px; float:left; padding-top:20px; ">
+				<select class="span2">
+					<option>Filter: Everything</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="container" style="background:#fff; width:595px; padding:20px; margin:25px auto; padding-bottom:15px;">
+			
+			<!-- ROW -->
+			<div style="background:#ebebeb; padding:20px; width:555px; margin-bottom:5px;">
+				<a href=""><img style="display:inline-block; border:5px solid #fff;margin-right:10px;" src="/static/img/stock_48.png" /> <span style="display:inline-block; font-size:26px;vertical-align:middle;width:412px;">Abbot Kinney Mural</span><span style="display:inline-block;width:70px;text-align:right; color:#999; vertical-align:middle">Attraction</span></a>
+			</div>
+			
+			<div style="background:#ebebeb; padding:20px; width:555px; margin-bottom:5px;">
+				<a href=""><img style="display:inline-block; border:5px solid #fff;margin-right:10px;" src="/static/img/stock_48.png" /> <span style="display:inline-block; font-size:26px;vertical-align:middle;width:412px;">Ismail E</span><span style="display:inline-block;width:70px;text-align:right; color:#999; vertical-align:middle">Person</span></a>
+			</div>
+			
+		</div>
+		<a href="#"><div class="container load-more" style="width:595px;"><span>load more</span> &#x25BC;</div></a>
+	</div>
+	<div style="float:left; width:340px; margin:25px auto;">
+		<div style="background:#fff; padding:20px; width:300px; min-height:1170px; text-align:right;">
+			<img src="/static/img/stock_300.png" width="300" height="250" /><br />
+			<a href="">Advertise With US</a>
+		</div>
+	</div>	
+</div>
+<br style="clear:both;" />
+{% endblock %}

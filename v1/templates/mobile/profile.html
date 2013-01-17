@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+  <head>
+    <meta charset="utf-8">
+    <title>{{name}}'s Adventures on Crash {{location}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crash is a location-based attraction discovery app where you can find unique and curated tourist attractions.">
+	<meta name="keywords" content="Travel, Tourist Attractions, Los Angeles, Trips, Photos, iPhone App">
+    <meta name="author" content="Ismail Elshareef">
+
+	<meta property="og:app_id" content="100928086720891"/>
+	<meta property="og:title" content="{{name}}'s Adventures on Crash {{location}}"/>
+	<meta property="og:type" content="public_figure"/>
+	<meta property="og:image" content="{{ photo }}"/>
+	<meta property="og:url" content="http://www.cra.sh/{{username}}"/>
+
+    <!-- styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<style>
+		body {
+			background: #282828;
+			font-family: Helvetica;
+			padding-bottom:0;
+		}
+		a {
+			color: #c6c6c6;
+		}
+		a:hover {
+			color:#bad4f2;
+			text-decoration: none;
+		}
+		footer {
+			background: #000;
+			color: #999;
+			padding: 10px 20px;
+			text-align: right;
+		}
+
+		h1 {
+			color: #bad4f2;
+			font-weight: normal;
+		}
+
+		/* Crash classes */
+		.reg {
+			color: #fff;
+			font-size: 15px;
+			padding:20px 20px 35px 20px; 
+			text-align: center;
+		}
+		
+		.logo {
+		background-image: url(/static/img/logo.png);
+		display: block;
+		height: 108px;
+		margin-left: 48px;
+		width: 129px;
+		margin: 0 auto;
+		}
+
+		.tagline {
+		background-color: #000;
+		color: #ccc;
+		font-size: 14px;
+		padding: 7px 15px;
+		text-align: center;
+		}
+
+		.footer {
+		color: #ccc;
+		padding: 10px 20px 5px 20px;
+		}
+		
+		a.login {
+			color: #98b2e8;
+		}
+		
+		a.login:hover {
+			color: #fff;
+		}
+		
+		a.signout {
+			color: #d2de8b;
+		}
+		
+		a.signout:hover {
+			color: #fff;
+		}
+		.score {
+			background: #000;
+			margin-top:5px;
+			text-align: center;
+			color:#666666;
+			font-size:10px;
+			font-weight:bold;
+		}
+		
+		.score span {
+			font-size: 22px;
+			color: #999999;
+		}
+		
+		.user .name {
+			font-size: 32px;
+			font-weight:bold;
+			color: #fff;
+		}
+		.footer {
+			padding: 10px 30px 5px 20px;
+		}
+		
+		#fbstatus {
+			text-align:center;
+		}
+	</style>
+  </head>
+
+  <body>
+	<div id="fb-root"></div>
+    
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+		<div class="navbar">
+	      <div class="navbar-inner" id="fbstatus"></div>
+	    </div>
+        <div class="span4" style="text-align:center;">
+			<div class="user"><span class="name">{{ name }}</span> <span style="font-size:10px; color:#999; text-transform:uppercase;">MEMBER SINCE: {{ date }}</span></div>
+			<img src="{{ photo }}" />
+			<div style="clear:both;padding-top:5px;">
+				<div class="score">RANK<br /><span>0</span></div>
+				<div class="score">COMMENTS<br /><span>0</span></div>
+				<div class="score">PHOTOS<br /><span>0</span></div>
+				<div class="score">HERO SHOTS<br /><span>0</span></div>
+				<div class="score">DISCOVERED<br /><span>0</span></div>
+			</div>
+        </div>
+        <div class="span4" style="margin:10px 0;">
+			<img src="/static/img/comingsoon.gif" />
+		</div>
+		<div class="span4">
+			<script>document.write('<fb:like href="'+window.location.href+'" send="true" colorscheme="dark" show_faces="false"></fb:like>');</script>
+		</div>
+		
+      </div>
+	</div>
+	
+	<div class="container" style="border-top:5px solid #cac974;background:#1d1d1d;">
+      	<footer>
+        	&copy; 2012 Crashworks, Inc - An <a href="http://www.idealab.com/" target="_blank">Idealab</a> Company &bull; <a href="mailto: crashfounders@gmail.com">Contact Us</a>
+      	</footer>
+
+    </div> <!-- /container -->
+
+	<!-- JavaScript block -->
+	<script src="/static/bootstrap/js/jquery172.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.js"></script>
+	<script src="/static/js/crash.js"></script>
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		FB.init({appId:"100928086720891",status:true,cookie:true,xfbml:true,oauth:true});
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+			    FB.api({method: 'fql.query',query: 'SELECT name FROM user WHERE uid=me()'}, function(response) {
+					$('#fbstatus').html('Hello '+response[0]['name']+' &bull; <a class="signout" href="#" onclick="CRASH.fbLogout();">Sign Out</a>');
+		     	});
+			} else {
+				$('#fbstatus').html('Login With <a class="login" href="javascript:;" onclick="CRASH.fbLogin();">Facebook</a>');
+			}
+		});
+	</script>
+	<script src="/static/js/prelaunch.js"></script>
+  </body>
+</html>

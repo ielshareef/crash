@@ -1,0 +1,193 @@
+{% extends "base/base_profile.html" %}
+{% load extras %}
+{% block socialbar %}
+<div id="facebook-bar" class="row flush">
+	<fb:like href="{{ req.build_absolute_uri }}" send="true" width="800" colorscheme="dark" show_faces="false"></fb:like>
+</div>
+{% endblock %}
+{% block fb_meta %}
+<meta property="og:title" content="{{ user_name|capfirst }}'s Adventures on Crash {{location}}"/>
+<meta property="og:image" content="http://res.cloudinary.com/hwthvxm3h/image/upload/w_595,h_595/{{ main_checkin.photo_url}}"/>
+{% endblock %}
+
+{% block content %}
+<style>
+	.polariod-lg {
+		margin-bottom:0;
+	}
+	.polariod {
+		width: 265px;
+		margin-top:25px;
+		margin-bottom:0;
+	}
+	.polariod .caption {
+		width: 201px;
+	}
+</style>
+<div class="container" style="position:relative; width:1000px;margin-top:25px;">
+	<div style="float:left; width:660px; border-right:340px solid #fff; margin-right:25px;min-height:985px;">
+		
+		{% if main_checkin %}
+		<div class="polariod-lg">
+			<a href="/photo/{{ main_checkin.id}}/{{ main_checkin.attraction.name.split|join:"_" }}"><img alt="{{ main_checkin.attraction.name.split|join:"_"|escape }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_595,h_595/{{ main_checkin.photo_url}}" width="595" height="595" /></a>
+			<div style="float:left; width:58px;height:58px;">
+				<img alt="{{ main_checkin.user.username }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_52,h_52,c_fill/{{ main_checkin.user.avatar }}" width="52" height="52" />
+			</div>
+			<div class="caption">
+				<span><a href="/attraction/{{ main_checkin.attraction.id}}/{{ main_checkin.attraction.name.split|join:"_" }}">{{ main_checkin.attraction.name}}</a></span><br />
+				<span>By: <a href="/{{ main_checkin.user.username }}">{{ main_checkin.user.username|capfirst }}</a><br />
+				<span class="timestamp">{{ main_checkin.created|timesince_threshold:2|split:"," }} ago</span>
+			</div>
+			<div class="likes">
+				<div id="loading_{{ main_checkin.id }}" class="loading hide"><img alt="" src="/static/img/loading.gif" /></div>
+				<a href="#"><span class="{% if not main_checkin.liked %}plus{% else %}minus{% endif %}">{{ main_checkin.id }}</span></a>
+				<span class="bubble"><strong id="checkin_likes_{{ main_checkin.id }}">{{ main_checkin.likes_count }}</strong><span>LIKE{{ main_checkin.likes_count|pluralize|upper }}</span></span>
+			</div>
+		</div>
+		{% else %}
+		<div class="polariod-lg">
+			<div style="width:595px; height:315px;text-align:center;padding-top:280px;font-size:30px;"></div>
+		</div>
+		{% endif %}
+		
+		<div id="checkins-list">
+		{% for i in checkins %}
+		<!-- The photo unit -->
+		<div class="polariod {% if not forloop.counter|divisibleby:"2"%}m25{% endif %}">
+			<a href="/photo/{{ i.id }}/{{ i.attraction.name.split|join:"_" }}"><img alt="{{ i.attraction.name.split|join:"_"|escape }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_264,h_264/{{ i.photo_url}}" width="264" height="264" /></a>
+			<div class="caption">
+				<span><a href="/attraction/{{ i.attraction.id }}/{{ i.attraction.name.split|join:"_" }}">{{ i.attraction.name }}</a></span><br />
+				<span class="timestamp">{{ i.created|timesince_threshold|split:"," }} ago</span>
+			</div>
+			<div class="likes">
+				<div id="loading_{{ i.id }}" class="loading hide"><img alt="" src="/static/img/loading.gif" /></div>
+				<a href="#"><span class="{% if not i.liked %}plus{% else %}minus{% endif %}">{{ i.id }}</span></a>
+				<span class="bubble" id="checkin_likes_{{ i.id }}">{{ i.likes_count }}</span>
+			</div>
+		</div>
+		<!-- END The photo unit -->
+		{% if forloop.last %}
+		<script>var pagination_starts_from = {{ i.id }}; pagination_user_id = {{ i.user.id }};</script>
+		{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+	<div style="float:left; width:340px; margin:20px auto; position:absolute; right:0;">
+		<div style="background:#fff; padding:20px; width:300px; border-bottom:25px solid #E5E5E5;padding-top:0;">
+			<div style="margin-bottom:7px;">
+				<span style="font-size:30px;display:inline-block;line-height:30px;">FRIENDS</span>
+			</div>
+			<div style="margin-bottom:25px;">
+				<div id="friends_following" class="friends_count arrow_box-gray">FOLLOWING<br /><span>{{ user.followed }}</span></div>
+				<div id="friends_followers" class="friends_count" style="padding-right:9px;">FOLLOWERS<br /><span>{{ user.followers }}</span></div>
+			</div>
+			<div id="follows" class="squares">
+				{% for i in follows %}
+				<a href="/{{ i.user.username }}"><img alt="{{ i.user.username }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_52,h_52,c_fill/{{ i.user.avatar }}" width="52" height="52" {% if forloop.counter|divisibleby:"5"%}class="last"{% endif %} /></a>
+				{% if forloop.last %}
+				{% if not forloop.counter|divisibleby:"5"%}
+					{% for b in forloop.counter|modulo:"5"|get_range %}
+						<div style="background:#e5e5e5;" {% if forloop.last %}class="last"{% endif %}></div>
+					{% endfor %}
+				{% endif %}
+				{% endif %}
+				{% endfor %}
+			</div>
+			<div id="followers" class="squares hide">
+				{% for i in followers %}
+				<a href="/{{ i.user.username }}"><img alt="{{ i.user.username }}" src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_52,h_52,c_fill/{{ i.user.avatar }}" width="52" height="52" {% if forloop.counter|divisibleby:"5"%}class="last"{% endif %} /></a>
+				{% if forloop.last %}
+				{% if not forloop.counter|divisibleby:"5"%}
+					{% for b in forloop.counter|modulo:"5"|get_range %}
+						<div style="background:#e5e5e5;" {% if forloop.last %}class="last"{% endif %}></div>
+					{% endfor %}
+				{% endif %}
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div style="background:#fff; padding:20px; width:300px; text-align:right;">
+			<a href=" https://itunes.apple.com/us/app/crash-be-your-own-tour-guide/id585479168" target="_blank"><img alt="Download the app from the iTunes App Store" src="/static/img/stock_300.png" width="300" height="600" style="margin-bottom:10px;"/></a><br />
+			<a href="/about_us">Advertise With Us</a>
+		</div>
+	</div>
+	<br style="clear:both;" /> 
+	{% if main_checkin and checkins|length > 19 %}
+	<a href="#"><div class="container load-more" style="width:595px; margin:25px 0 0 0;"><span id="loading_load_more" class="loading hide"><img alt="" src="/static/img/loading-bk.gif" width="20" height="20" /></span><span style="padding-left:10px;">load more</span> &#x25BC;</div></a>
+	{% endif %}	
+</div>
+<br style="clear:both;" />
+{% endblock %}
+
+{% block js %}
+<script>
+	(function() {
+		
+		var friends_followers_state = $('#friends_followers').hasClass('arrow_box-gray');
+		var friends_following_state = $('#friends_following').hasClass('arrow_box-gray');
+		
+		$('#friends_followers').hover(function() {
+			if (!friends_followers_state) {
+				$(this).toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_followers_state = true;
+			friends_following_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_following').removeClass('arrow_box-gray');
+			$('#followers').removeClass('hide');
+			$('#follows').addClass('hide');
+		});
+		
+		$('#friends_following').hover(function() {
+			if (!friends_following_state) {
+				$(this).toggleClass('arrow_box-gray');
+			}
+		}).click(function() {
+			friends_following_state = true;
+			friends_followers_state = false;
+			$(this).addClass('arrow_box-gray');
+			$('#friends_followers').removeClass('arrow_box-gray');
+			$('#follows').removeClass('hide');
+			$('#followers').addClass('hide');
+		});
+		$('.load-more').click(function(e) {
+			e.preventDefault();
+			var that = this;
+			$('#loading_load_more').removeClass('hide');
+			var rt = $('#checkins-list');
+			$.post("/load_more", {'user_id': pagination_user_id, 'before_id': pagination_starts_from}, function(data) {
+				var obj = jQuery.parseJSON(data)
+				// No errors
+				if (!obj.error) {
+					var len = obj.length;
+					var html = '';
+					for (var i=0; i < len; i++) {
+						m = 'm25';
+						n = 'plus'
+						if (i%2) m = '';
+						if (obj[i].liked) n = 'minus';
+						pagination_starts_from = obj[i].id;
+
+						html = '<div class="polariod '+m+'">';
+						html += '<a href="/photo/'+obj[i].id+'/'+obj[i].attraction.name.split().join('_')+'"><img src="http://res.cloudinary.com/hwthvxm3h/image/upload/w_264,h_264/'+obj[i].photo_url+'" width="264" height="264" /></a>';
+						html += '<div class="caption"><span><a href="/attraction/'+obj[i].attraction.id+'/'+obj[i].attraction.name.split(' ').join('_')+'">'+obj[i].attraction.name+'</a></span><br />';
+						html += '<span class="timestamp">'+jQuery.timeago(obj[i].created)+'</span></div>';
+						html += '<div class="likes"><div id="loading_'+obj[i].id+'" class="loading hide"><img src="/static/img/loading.gif" /></div>';
+						html += '<a href="#"><span class="'+n+'">'+obj[i].id+'</span></a><span class="bubble" id="checkin_likes_'+obj[i].id+'">'+obj[i].likes_count+'</span></div></div>';
+
+						rt.append(html);
+					}
+					$('#loading_load_more').addClass('hide');
+					if (len < 20) {
+						$(that).addClass('hide');
+					} 
+				} else {
+					$('#loading_load_more').addClass('hide');
+					alert('Uh-oh, looks like we\'re having a technical issue. We\'re on it.');
+				}
+			});
+		});
+	})();
+</script>
+{% endblock %}
