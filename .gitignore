@@ -2,7 +2,7 @@ venv
 *.pyc
 celerybeat-schedule
 crash/settings_local.py
-crash/settings.py
+#crash/settings.py
 
 # OS generated files #
 ######################
