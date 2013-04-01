@@ -2,7 +2,6 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.utils import simplejson
-from prelaunch.models import Earlybird
 from django.utils import timezone
 import datetime
 import time
@@ -111,44 +110,6 @@ def profile(request, un):
 		else:
 			return render_to_response('profile.html', {'user': r.json[0], 'follows': follows.json, 'followers': followers.json, 'user_name': user_name, 'main_checkin': main_checkin, 'checkins': ck.json[1::], 'location': r.json[0]['preferred_region']['name'].split(', ')[0], 'token': token, 'req': request })
 		
-	except ObjectDoesNotExist:
-		raise Http404
-		
-def profile_discovered(request, un):
-	try:
-		token = api_token(request)
-		user = Earlybird.objects.get(username__iexact=un)
-		dt = user.join_date.strftime('%b %d, %Y')
-		u = facebook.get_user_from_cookie(request.COOKIES, '100928086720891', '1e2dbf3c69829df5e765b548fd489850')
-		if u:
-			if mobileBrowser(request):
-				return render_to_response('profile_discovered.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name, 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0], 'req': request })
-			else:
-				return render_to_response('profile_discovered.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name, 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0], 'req': request })
-		else:
-			if mobileBrowser(request):
-				return render_to_response('profile_discovered.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name[0:1], 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0], 'req': request })
-			else:
-				return render_to_response('profile_discovered.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name[0:1], 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0], 'req': request })
-	except ObjectDoesNotExist:
-		raise Http404
-		
-def profile_friends(request, un):
-	try:
-		token = api_token(request)
-		user = Earlybird.objects.get(username__iexact=un)
-		dt = user.join_date.strftime('%b %d, %Y')
-		u = facebook.get_user_from_cookie(request.COOKIES, '100928086720891', '1e2dbf3c69829df5e765b548fd489850')
-		if u:
-			if mobileBrowser(request):
-				return render_to_response('profile_friends.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name, 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0] })
-			else:
-				return render_to_response('profile_friends.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name, 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0] })
-		else:
-			if mobileBrowser(request):
-				return render_to_response('profile_friends.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name[0:1], 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0] })
-			else:
-				return render_to_response('profile_friends.html', {'lname': user.first_name, 'name': user.first_name + ' ' + user.last_name[0:1], 'photo': user.photo, 'date': dt, 'username': un, 'location': user.primary_location.split(', ')[0] })
 	except ObjectDoesNotExist:
 		raise Http404
 
